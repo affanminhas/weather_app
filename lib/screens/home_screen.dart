@@ -5,7 +5,7 @@ class HomeScreen extends StatelessWidget {
   WeatherModel? weatherModel;
   String? cityNameWithCountry;
 
-  HomeScreen({this.weatherModel, this.cityNameWithCountry});
+  HomeScreen({this.weatherModel, this.cityNameWithCountry = "Karachi,Pakistan"});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                       left: 160,
                       child: Row(
                         children: [
-                          Text((weatherModel!.current!.tempC!.toInt()).toString(), style: const TextStyle(
+                          Text(((weatherModel!.current!.tempC!.toInt()).toString()), style: const TextStyle(
                             fontSize: 100,
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.bold,

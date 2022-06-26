@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:weather/Geolocation/get_location.dart';
 import 'package:weather/widgets/select_city.dart';
 import 'package:weather/widgets/select_current_location.dart';
 
 class LandingScreen extends StatelessWidget {
-  const LandingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,4 +55,5 @@ class LandingScreen extends StatelessWidget {
       ),
     );
   }
+
 }
