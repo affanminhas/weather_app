@@ -1,13 +1,33 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class CitySuggestionField extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:weather/screens/home_screen.dart';
+
+import '../../models/weather_model.dart';
+import 'package:http/http.dart' as http;
+
+class CitySuggestionField extends StatefulWidget {
   String cityName;
-  CitySuggestionField({required this.cityName});
+  String city;
+
+  CitySuggestionField({required this.cityName, required this.city});
+
+  @override
+  State<CitySuggestionField> createState() => _CitySuggestionFieldState();
+}
+
+class _CitySuggestionFieldState extends State<CitySuggestionField> {
+  Current? currentWeather;
+  Location? location;
+  WeatherModel? weatherModelClass;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: ()async{
+        await getCurrentWeather();
+        Navigator.of(context).push(MaterialPageRoute(builder: (_)=> HomeScreen(weatherModel: weatherModelClass,cityNameWithCountry: widget.cityName,)));
+      },
       child: Container(
           height: 70,
           width: MediaQuery.of(context).size.width,
@@ -20,7 +40,7 @@ class CitySuggestionField extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  Text(cityName, style: const TextStyle(
+                  Text(widget.cityName, style: const TextStyle(
                       fontFamily: "Poppins",
                       fontSize: 17,
                       color: Colors.black
@@ -31,5 +51,14 @@ class CitySuggestionField extends StatelessWidget {
           )
       ),
     );
+  }
+
+  Future<void> getCurrentWeather()async{
+    var url = "http://api.weatherapi.com/v1/current.json?key=431020c1ee8b44f3b8860812222606&q=${widget.city}&aqi=no";
+    var response = await http.get(Uri.parse(url));
+    var responseJSON = WeatherModel.fromJson(jsonDecode(response.body));
+    setState(() {
+      weatherModelClass = responseJSON;
+    });
   }
 }

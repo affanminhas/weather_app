@@ -49,10 +49,11 @@ class CitySelectionScreen extends StatelessWidget {
   }
 
   Widget updateList(BuildContext context, int index) {
+    List<String> city = ["Karachi","Sydney","Barcelona"];
     List<String> cities = ["Karachi,Pakistan","Sydney,Australia","Barcelona,Argentina"];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: CitySuggestionField(cityName: cities[index]),
+      child: CitySuggestionField(city: city[index],cityName: cities[index]),
     );
   }
 }

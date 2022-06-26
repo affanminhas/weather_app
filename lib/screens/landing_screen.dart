@@ -10,8 +10,8 @@ class LandingScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Padding(
+        children: [
+          const Padding(
             padding: EdgeInsets.only(top: 50, left: 20),
             child: Text("Hello,", style: TextStyle(
               fontSize: 50,
@@ -19,7 +19,7 @@ class LandingScreen extends StatelessWidget {
               fontWeight: FontWeight.w600
             ),),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text("let's set you,", style: TextStyle(
                 fontSize: 50,
@@ -28,7 +28,7 @@ class LandingScreen extends StatelessWidget {
               color: Color(0xffBFBFBF)
               )
             ),),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(left: 20),
             child: Text("weather..", style: TextStyle(
                 fontSize: 50,
@@ -37,17 +37,17 @@ class LandingScreen extends StatelessWidget {
                 color: Color(0xff6DC9EF)
             )
             ),),
-          Image(
+          const Image(
             image: AssetImage(
               "images/landing_line.png"
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 100, left: 20, right: 20),
             child: CurrentLocationField(),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10 ,left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 10 ,left: 20, right: 20),
             child: SelectCity()
           )
         ],
